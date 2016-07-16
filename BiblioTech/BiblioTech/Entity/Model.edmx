@@ -1,0 +1,571 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BibliotecaModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="BibliotecaModelStoreContainer">
+          <EntitySet Name="catalogos" EntityType="BibliotecaModel.Store.catalogos" store:Type="Tables" Schema="biblioteca_enrjga" />
+          <EntitySet Name="libros" EntityType="BibliotecaModel.Store.libros" store:Type="Tables" Schema="biblioteca_enrjga" />
+          <EntitySet Name="perdidos" EntityType="BibliotecaModel.Store.perdidos" store:Type="Tables" Schema="biblioteca_enrjga" />
+          <EntitySet Name="prestamos" EntityType="BibliotecaModel.Store.prestamos" store:Type="Tables" Schema="biblioteca_enrjga" />
+          <EntitySet Name="usuarios" EntityType="BibliotecaModel.Store.usuarios" store:Type="Tables" Schema="biblioteca_enrjga" />
+          <EntitySet Name="usuarios_app" EntityType="BibliotecaModel.Store.usuarios_app" store:Type="Tables" Schema="biblioteca_enrjga" />
+          <AssociationSet Name="fk_area" Association="BibliotecaModel.Store.fk_area">
+            <End Role="catalogos" EntitySet="catalogos" />
+            <End Role="libros" EntitySet="libros" />
+          </AssociationSet>
+          <AssociationSet Name="fk_autor" Association="BibliotecaModel.Store.fk_autor">
+            <End Role="catalogos" EntitySet="catalogos" />
+            <End Role="libros" EntitySet="libros" />
+          </AssociationSet>
+          <AssociationSet Name="fk_editorial" Association="BibliotecaModel.Store.fk_editorial">
+            <End Role="catalogos" EntitySet="catalogos" />
+            <End Role="libros" EntitySet="libros" />
+          </AssociationSet>
+          <AssociationSet Name="fk_libro" Association="BibliotecaModel.Store.fk_libro">
+            <End Role="libros" EntitySet="libros" />
+            <End Role="perdidos" EntitySet="perdidos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_libro_prestado" Association="BibliotecaModel.Store.fk_libro_prestado">
+            <End Role="libros" EntitySet="libros" />
+            <End Role="prestamos" EntitySet="prestamos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_usuario" Association="BibliotecaModel.Store.fk_usuario">
+            <End Role="usuarios" EntitySet="usuarios" />
+            <End Role="perdidos" EntitySet="perdidos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_usuario_app_prestamo" Association="BibliotecaModel.Store.fk_usuario_app_prestamo">
+            <End Role="usuarios_app" EntitySet="usuarios_app" />
+            <End Role="prestamos" EntitySet="prestamos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_usuario_prestamo" Association="BibliotecaModel.Store.fk_usuario_prestamo">
+            <End Role="usuarios" EntitySet="usuarios" />
+            <End Role="prestamos" EntitySet="prestamos" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="catalogos">
+          <Key>
+            <PropertyRef Name="id_catalogo" />
+          </Key>
+          <Property Name="id_catalogo" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="tipo" Type="varchar" Nullable="false" MaxLength="2" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="libros">
+          <Key>
+            <PropertyRef Name="id_libro" />
+          </Key>
+          <Property Name="id_libro" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="clave" Type="varchar" MaxLength="20" />
+          <Property Name="id_area" Type="uint" Nullable="false" />
+          <Property Name="id_autor" Type="uint" />
+          <Property Name="id_editorial" Type="uint" />
+          <Property Name="titulo" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="edicion" Type="varchar" MaxLength="5" />
+          <Property Name="anio" Type="varchar" MaxLength="4" />
+          <Property Name="no_ejemplares" Type="uint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="perdidos">
+          <Key>
+            <PropertyRef Name="id_registro" />
+          </Key>
+          <Property Name="id_registro" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id_libro" Type="uint" Nullable="false" />
+          <Property Name="fecha_perdida" Type="date" Nullable="false" />
+          <Property Name="matricula" Type="varchar" Nullable="false" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="prestamos">
+          <Key>
+            <PropertyRef Name="id_prestamo" />
+          </Key>
+          <Property Name="id_prestamo" Type="uint" Nullable="false" />
+          <Property Name="matricula" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="fecha_prestamo" Type="date" Nullable="false" />
+          <Property Name="fecha_entrega_sugerida" Type="date" Nullable="false" />
+          <Property Name="fecha_entrega_real" Type="date" />
+          <Property Name="id_usuario_app" Type="uint" Nullable="false" />
+          <Property Name="id_libro" Type="uint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuarios">
+          <Key>
+            <PropertyRef Name="matricula" />
+          </Key>
+          <Property Name="matricula" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="primer_nombre" Type="varchar" Nullable="false" MaxLength="80" />
+          <Property Name="segundo_nombre" Type="varchar" MaxLength="80" />
+          <Property Name="apellido_paterno" Type="varchar" MaxLength="80" />
+          <Property Name="apellido_materno" Type="varchar" Nullable="false" MaxLength="80" />
+          <Property Name="tipo_usuario" Type="varchar" Nullable="false" MaxLength="2" />
+        </EntityType>
+        <EntityType Name="usuarios_app">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="uint" Nullable="false" />
+          <Property Name="nombre_usuario" Type="varchar" Nullable="false" MaxLength="15" />
+          <Property Name="contrasenia" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+          <Property Name="nombre_completo" Type="varchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <Association Name="fk_area">
+          <End Role="catalogos" Type="BibliotecaModel.Store.catalogos" Multiplicity="1" />
+          <End Role="libros" Type="BibliotecaModel.Store.libros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catalogos">
+              <PropertyRef Name="id_catalogo" />
+            </Principal>
+            <Dependent Role="libros">
+              <PropertyRef Name="id_area" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_autor">
+          <End Role="catalogos" Type="BibliotecaModel.Store.catalogos" Multiplicity="0..1" />
+          <End Role="libros" Type="BibliotecaModel.Store.libros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catalogos">
+              <PropertyRef Name="id_catalogo" />
+            </Principal>
+            <Dependent Role="libros">
+              <PropertyRef Name="id_autor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_editorial">
+          <End Role="catalogos" Type="BibliotecaModel.Store.catalogos" Multiplicity="0..1" />
+          <End Role="libros" Type="BibliotecaModel.Store.libros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catalogos">
+              <PropertyRef Name="id_catalogo" />
+            </Principal>
+            <Dependent Role="libros">
+              <PropertyRef Name="id_editorial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_libro">
+          <End Role="libros" Type="BibliotecaModel.Store.libros" Multiplicity="1" />
+          <End Role="perdidos" Type="BibliotecaModel.Store.perdidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="libros">
+              <PropertyRef Name="id_libro" />
+            </Principal>
+            <Dependent Role="perdidos">
+              <PropertyRef Name="id_libro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_libro_prestado">
+          <End Role="libros" Type="BibliotecaModel.Store.libros" Multiplicity="1" />
+          <End Role="prestamos" Type="BibliotecaModel.Store.prestamos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="libros">
+              <PropertyRef Name="id_libro" />
+            </Principal>
+            <Dependent Role="prestamos">
+              <PropertyRef Name="id_libro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_usuario">
+          <End Role="usuarios" Type="BibliotecaModel.Store.usuarios" Multiplicity="1" />
+          <End Role="perdidos" Type="BibliotecaModel.Store.perdidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios">
+              <PropertyRef Name="matricula" />
+            </Principal>
+            <Dependent Role="perdidos">
+              <PropertyRef Name="matricula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_usuario_app_prestamo">
+          <End Role="usuarios_app" Type="BibliotecaModel.Store.usuarios_app" Multiplicity="1" />
+          <End Role="prestamos" Type="BibliotecaModel.Store.prestamos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios_app">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="prestamos">
+              <PropertyRef Name="id_usuario_app" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_usuario_prestamo">
+          <End Role="usuarios" Type="BibliotecaModel.Store.usuarios" Multiplicity="1" />
+          <End Role="prestamos" Type="BibliotecaModel.Store.prestamos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios">
+              <PropertyRef Name="matricula" />
+            </Principal>
+            <Dependent Role="prestamos">
+              <PropertyRef Name="matricula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BibliotecaModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="BibliotecaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="catalogos" EntityType="BibliotecaModel.catalogos" />
+          <EntitySet Name="libros" EntityType="BibliotecaModel.libros" />
+          <EntitySet Name="perdidos" EntityType="BibliotecaModel.perdidos" />
+          <EntitySet Name="prestamos" EntityType="BibliotecaModel.prestamos" />
+          <EntitySet Name="usuarios" EntityType="BibliotecaModel.usuarios" />
+          <EntitySet Name="usuarios_app" EntityType="BibliotecaModel.usuarios_app" />
+          <AssociationSet Name="fk_area" Association="BibliotecaModel.fk_area">
+            <End Role="catalogos" EntitySet="catalogos" />
+            <End Role="libros" EntitySet="libros" />
+          </AssociationSet>
+          <AssociationSet Name="fk_autor" Association="BibliotecaModel.fk_autor">
+            <End Role="catalogos" EntitySet="catalogos" />
+            <End Role="libros" EntitySet="libros" />
+          </AssociationSet>
+          <AssociationSet Name="fk_editorial" Association="BibliotecaModel.fk_editorial">
+            <End Role="catalogos" EntitySet="catalogos" />
+            <End Role="libros" EntitySet="libros" />
+          </AssociationSet>
+          <AssociationSet Name="fk_libro" Association="BibliotecaModel.fk_libro">
+            <End Role="libros" EntitySet="libros" />
+            <End Role="perdidos" EntitySet="perdidos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_libro_prestado" Association="BibliotecaModel.fk_libro_prestado">
+            <End Role="libros" EntitySet="libros" />
+            <End Role="prestamos" EntitySet="prestamos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_usuario" Association="BibliotecaModel.fk_usuario">
+            <End Role="usuarios" EntitySet="usuarios" />
+            <End Role="perdidos" EntitySet="perdidos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_usuario_app_prestamo" Association="BibliotecaModel.fk_usuario_app_prestamo">
+            <End Role="usuarios_app" EntitySet="usuarios_app" />
+            <End Role="prestamos" EntitySet="prestamos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_usuario_prestamo" Association="BibliotecaModel.fk_usuario_prestamo">
+            <End Role="usuarios" EntitySet="usuarios" />
+            <End Role="prestamos" EntitySet="prestamos" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="catalogos">
+          <Key>
+            <PropertyRef Name="id_catalogo" />
+          </Key>
+          <Property Name="id_catalogo" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="tipo" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="area" Relationship="BibliotecaModel.fk_area" FromRole="catalogos" ToRole="libros" />
+          <NavigationProperty Name="autor" Relationship="BibliotecaModel.fk_autor" FromRole="catalogos" ToRole="libros" />
+          <NavigationProperty Name="editorial" Relationship="BibliotecaModel.fk_editorial" FromRole="catalogos" ToRole="libros" />
+        </EntityType>
+        <EntityType Name="libros">
+          <Key>
+            <PropertyRef Name="id_libro" />
+          </Key>
+          <Property Name="id_libro" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="clave" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="id_area" Type="Int64" Nullable="false" />
+          <Property Name="id_autor" Type="Int64" />
+          <Property Name="id_editorial" Type="Int64" />
+          <Property Name="titulo" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="edicion" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Name="anio" Type="String" MaxLength="4" Unicode="false" FixedLength="false" />
+          <Property Name="no_ejemplares" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="area" Relationship="BibliotecaModel.fk_area" FromRole="libros" ToRole="catalogos" />
+          <NavigationProperty Name="autor" Relationship="BibliotecaModel.fk_autor" FromRole="libros" ToRole="catalogos" />
+          <NavigationProperty Name="editorial" Relationship="BibliotecaModel.fk_editorial" FromRole="libros" ToRole="catalogos" />
+          <NavigationProperty Name="perdidos" Relationship="BibliotecaModel.fk_libro" FromRole="libros" ToRole="perdidos" />
+          <NavigationProperty Name="prestamos" Relationship="BibliotecaModel.fk_libro_prestado" FromRole="libros" ToRole="prestamos" />
+        </EntityType>
+        <EntityType Name="perdidos">
+          <Key>
+            <PropertyRef Name="id_registro" />
+          </Key>
+          <Property Name="id_registro" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_libro" Type="Int64" Nullable="false" />
+          <Property Name="fecha_perdida" Type="DateTime" Nullable="false" />
+          <Property Name="matricula" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="libros" Relationship="BibliotecaModel.fk_libro" FromRole="perdidos" ToRole="libros" />
+          <NavigationProperty Name="usuarios" Relationship="BibliotecaModel.fk_usuario" FromRole="perdidos" ToRole="usuarios" />
+        </EntityType>
+        <EntityType Name="prestamos">
+          <Key>
+            <PropertyRef Name="id_prestamo" />
+          </Key>
+          <Property Name="id_prestamo" Type="Int64" Nullable="false" />
+          <Property Name="matricula" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="fecha_prestamo" Type="DateTime" Nullable="false" />
+          <Property Name="fecha_entrega_sugerida" Type="DateTime" Nullable="false" />
+          <Property Name="fecha_entrega_real" Type="DateTime" />
+          <Property Name="id_usuario_app" Type="Int64" Nullable="false" />
+          <Property Name="id_libro" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="libros" Relationship="BibliotecaModel.fk_libro_prestado" FromRole="prestamos" ToRole="libros" />
+          <NavigationProperty Name="usuarios_app" Relationship="BibliotecaModel.fk_usuario_app_prestamo" FromRole="prestamos" ToRole="usuarios_app" />
+          <NavigationProperty Name="usuarios" Relationship="BibliotecaModel.fk_usuario_prestamo" FromRole="prestamos" ToRole="usuarios" />
+        </EntityType>
+        <EntityType Name="usuarios">
+          <Key>
+            <PropertyRef Name="matricula" />
+          </Key>
+          <Property Name="matricula" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="primer_nombre" Type="String" Nullable="false" MaxLength="80" Unicode="false" FixedLength="false" />
+          <Property Name="segundo_nombre" Type="String" MaxLength="80" Unicode="false" FixedLength="false" />
+          <Property Name="apellido_paterno" Type="String" MaxLength="80" Unicode="false" FixedLength="false" />
+          <Property Name="apellido_materno" Type="String" Nullable="false" MaxLength="80" Unicode="false" FixedLength="false" />
+          <Property Name="tipo_usuario" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="perdidos" Relationship="BibliotecaModel.fk_usuario" FromRole="usuarios" ToRole="perdidos" />
+          <NavigationProperty Name="prestamos" Relationship="BibliotecaModel.fk_usuario_prestamo" FromRole="usuarios" ToRole="prestamos" />
+        </EntityType>
+        <EntityType Name="usuarios_app">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="Int64" Nullable="false" />
+          <Property Name="nombre_usuario" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="contrasenia" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <Property Name="nombre_completo" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="prestamos" Relationship="BibliotecaModel.fk_usuario_app_prestamo" FromRole="usuarios_app" ToRole="prestamos" />
+        </EntityType>
+        <Association Name="fk_area">
+          <End Role="catalogos" Type="BibliotecaModel.catalogos" Multiplicity="1" />
+          <End Role="libros" Type="BibliotecaModel.libros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catalogos">
+              <PropertyRef Name="id_catalogo" />
+            </Principal>
+            <Dependent Role="libros">
+              <PropertyRef Name="id_area" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_autor">
+          <End Role="catalogos" Type="BibliotecaModel.catalogos" Multiplicity="0..1" />
+          <End Role="libros" Type="BibliotecaModel.libros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catalogos">
+              <PropertyRef Name="id_catalogo" />
+            </Principal>
+            <Dependent Role="libros">
+              <PropertyRef Name="id_autor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_editorial">
+          <End Role="catalogos" Type="BibliotecaModel.catalogos" Multiplicity="0..1" />
+          <End Role="libros" Type="BibliotecaModel.libros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catalogos">
+              <PropertyRef Name="id_catalogo" />
+            </Principal>
+            <Dependent Role="libros">
+              <PropertyRef Name="id_editorial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_libro">
+          <End Role="libros" Type="BibliotecaModel.libros" Multiplicity="1" />
+          <End Role="perdidos" Type="BibliotecaModel.perdidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="libros">
+              <PropertyRef Name="id_libro" />
+            </Principal>
+            <Dependent Role="perdidos">
+              <PropertyRef Name="id_libro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_libro_prestado">
+          <End Role="libros" Type="BibliotecaModel.libros" Multiplicity="1" />
+          <End Role="prestamos" Type="BibliotecaModel.prestamos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="libros">
+              <PropertyRef Name="id_libro" />
+            </Principal>
+            <Dependent Role="prestamos">
+              <PropertyRef Name="id_libro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_usuario">
+          <End Role="usuarios" Type="BibliotecaModel.usuarios" Multiplicity="1" />
+          <End Role="perdidos" Type="BibliotecaModel.perdidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios">
+              <PropertyRef Name="matricula" />
+            </Principal>
+            <Dependent Role="perdidos">
+              <PropertyRef Name="matricula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_usuario_app_prestamo">
+          <End Role="usuarios_app" Type="BibliotecaModel.usuarios_app" Multiplicity="1" />
+          <End Role="prestamos" Type="BibliotecaModel.prestamos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios_app">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="prestamos">
+              <PropertyRef Name="id_usuario_app" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_usuario_prestamo">
+          <End Role="usuarios" Type="BibliotecaModel.usuarios" Multiplicity="1" />
+          <End Role="prestamos" Type="BibliotecaModel.prestamos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios">
+              <PropertyRef Name="matricula" />
+            </Principal>
+            <Dependent Role="prestamos">
+              <PropertyRef Name="matricula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BibliotecaModelStoreContainer" CdmEntityContainer="BibliotecaEntities">
+          <EntitySetMapping Name="catalogos">
+            <EntityTypeMapping TypeName="BibliotecaModel.catalogos">
+              <MappingFragment StoreEntitySet="catalogos">
+                <ScalarProperty Name="id_catalogo" ColumnName="id_catalogo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="libros">
+            <EntityTypeMapping TypeName="BibliotecaModel.libros">
+              <MappingFragment StoreEntitySet="libros">
+                <ScalarProperty Name="id_libro" ColumnName="id_libro" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="id_area" ColumnName="id_area" />
+                <ScalarProperty Name="id_autor" ColumnName="id_autor" />
+                <ScalarProperty Name="id_editorial" ColumnName="id_editorial" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="edicion" ColumnName="edicion" />
+                <ScalarProperty Name="anio" ColumnName="anio" />
+                <ScalarProperty Name="no_ejemplares" ColumnName="no_ejemplares" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="perdidos">
+            <EntityTypeMapping TypeName="BibliotecaModel.perdidos">
+              <MappingFragment StoreEntitySet="perdidos">
+                <ScalarProperty Name="id_registro" ColumnName="id_registro" />
+                <ScalarProperty Name="id_libro" ColumnName="id_libro" />
+                <ScalarProperty Name="fecha_perdida" ColumnName="fecha_perdida" />
+                <ScalarProperty Name="matricula" ColumnName="matricula" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="prestamos">
+            <EntityTypeMapping TypeName="BibliotecaModel.prestamos">
+              <MappingFragment StoreEntitySet="prestamos">
+                <ScalarProperty Name="id_prestamo" ColumnName="id_prestamo" />
+                <ScalarProperty Name="matricula" ColumnName="matricula" />
+                <ScalarProperty Name="fecha_prestamo" ColumnName="fecha_prestamo" />
+                <ScalarProperty Name="fecha_entrega_sugerida" ColumnName="fecha_entrega_sugerida" />
+                <ScalarProperty Name="fecha_entrega_real" ColumnName="fecha_entrega_real" />
+                <ScalarProperty Name="id_usuario_app" ColumnName="id_usuario_app" />
+                <ScalarProperty Name="id_libro" ColumnName="id_libro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuarios">
+            <EntityTypeMapping TypeName="BibliotecaModel.usuarios">
+              <MappingFragment StoreEntitySet="usuarios">
+                <ScalarProperty Name="matricula" ColumnName="matricula" />
+                <ScalarProperty Name="primer_nombre" ColumnName="primer_nombre" />
+                <ScalarProperty Name="segundo_nombre" ColumnName="segundo_nombre" />
+                <ScalarProperty Name="apellido_paterno" ColumnName="apellido_paterno" />
+                <ScalarProperty Name="apellido_materno" ColumnName="apellido_materno" />
+                <ScalarProperty Name="tipo_usuario" ColumnName="tipo_usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuarios_app">
+            <EntityTypeMapping TypeName="BibliotecaModel.usuarios_app">
+              <MappingFragment StoreEntitySet="usuarios_app">
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="nombre_usuario" ColumnName="nombre_usuario" />
+                <ScalarProperty Name="contrasenia" ColumnName="contrasenia" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="nombre_completo" ColumnName="nombre_completo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model">
+        <EntityTypeShape EntityType="BibliotecaModel.catalogos" Width="1.5" PointX="7.25" PointY="0.5" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="BibliotecaModel.libros" Width="1.5" PointX="4.875" PointY="0.5" Height="3.7109993489583335" IsExpanded="true" />
+        <EntityTypeShape EntityType="BibliotecaModel.perdidos" Width="1.5" PointX="2.375" PointY="0.625" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="BibliotecaModel.prestamos" Width="1.5" PointX="2.375" PointY="3" Height="2.9417936197916656" IsExpanded="true" />
+        <EntityTypeShape EntityType="BibliotecaModel.usuarios" Width="1.5" PointX="0.5" PointY="0.5" Height="2.5571907552083335" IsExpanded="true" />
+        <EntityTypeShape EntityType="BibliotecaModel.usuarios_app" Width="1.5" PointX="7.25" PointY="3.75" Height="2.1725878906249996" IsExpanded="true" />
+        <AssociationConnector Association="BibliotecaModel.fk_area" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.25" PointY="1.6824446614583337" />
+          <ConnectorPoint PointX="6.375" PointY="1.6824446614583337" />
+        </AssociationConnector>
+        <AssociationConnector Association="BibliotecaModel.fk_autor" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.25" PointY="1.0287223307291669" />
+          <ConnectorPoint PointX="6.375" PointY="1.0287223307291669" />
+        </AssociationConnector>
+        <AssociationConnector Association="BibliotecaModel.fk_editorial" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.25" PointY="2.3361669921875006" />
+          <ConnectorPoint PointX="6.375" PointY="2.3361669921875006" />
+        </AssociationConnector>
+        <AssociationConnector Association="BibliotecaModel.fk_libro" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.875" PointY="1.7112939453124998" />
+          <ConnectorPoint PointX="3.875" PointY="1.7112939453124998" />
+        </AssociationConnector>
+        <AssociationConnector Association="BibliotecaModel.fk_libro_prestado" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.875" PointY="3.6054996744791667" />
+          <ConnectorPoint PointX="3.875" PointY="3.6054996744791667" />
+        </AssociationConnector>
+        <AssociationConnector Association="BibliotecaModel.fk_usuario" ManuallyRouted="false">
+          <ConnectorPoint PointX="2" PointY="1.7112939453124998" />
+          <ConnectorPoint PointX="2.375" PointY="1.7112939453124998" />
+        </AssociationConnector>
+        <AssociationConnector Association="BibliotecaModel.fk_usuario_app_prestamo" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.25" PointY="5.0980436197916665" />
+          <ConnectorPoint PointX="3.875" PointY="5.0980436197916665" />
+        </AssociationConnector>
+        <AssociationConnector Association="BibliotecaModel.fk_usuario_prestamo" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.25" PointY="3.0571907552083335" />
+          <ConnectorPoint PointX="1.25" PointY="4.4708968098958328" />
+          <ConnectorPoint PointX="2.375" PointY="4.4708968098958328" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
