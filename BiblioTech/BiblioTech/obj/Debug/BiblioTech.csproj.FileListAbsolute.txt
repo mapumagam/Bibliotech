@@ -31,3 +31,6 @@ G:\Mis Documentos\Visual Studio 2010\Projects\BiblioTech\BiblioTech\obj\Debug\Bi
 G:\Mis Documentos\Visual Studio 2010\Projects\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Catalogo.resources
 G:\Mis Documentos\Visual Studio 2010\Projects\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Devoluciones.resources
 G:\Mis Documentos\Visual Studio 2010\Projects\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Buscar_Lector.resources
+D:\GitHub\Bibliotech\BiblioTech\BiblioTech\bin\Debug\BiblioTech.exe.config
+D:\GitHub\Bibliotech\BiblioTech\BiblioTech\obj\Debug\BiblioTech.exe
+D:\GitHub\Bibliotech\BiblioTech\BiblioTech\obj\Debug\BiblioTech.pdb
