@@ -1,0 +1,33 @@
+c:\users\memo\documents\visual studio 2010\Projects\BiblioTech\BiblioTech\obj\Debug\BiblioTech.csprojResolveAssemblyReference.cache
+c:\users\memo\documents\visual studio 2010\Projects\BiblioTech\BiblioTech\obj\Debug\BiblioTech.Properties.Resources.resources
+c:\users\memo\documents\visual studio 2010\Projects\BiblioTech\BiblioTech\obj\Debug\BiblioTech.csproj.GenerateResource.Cache
+c:\users\memo\documents\visual studio 2010\Projects\BiblioTech\BiblioTech\obj\Debug\BiblioTech.exe.licenses
+c:\users\memo\documents\visual studio 2010\Projects\BiblioTech\BiblioTech\bin\Debug\BiblioTech.exe
+c:\users\memo\documents\visual studio 2010\Projects\BiblioTech\BiblioTech\bin\Debug\BiblioTech.pdb
+c:\users\memo\documents\visual studio 2010\Projects\BiblioTech\BiblioTech\obj\Debug\BiblioTech.exe
+c:\users\memo\documents\visual studio 2010\Projects\BiblioTech\BiblioTech\obj\Debug\BiblioTech.pdb
+c:\users\memo\documents\visual studio 2010\Projects\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Login.resources
+c:\users\memo\documents\visual studio 2010\Projects\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Principal.resources
+c:\users\memo\documents\visual studio 2010\Projects\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Usuarios.resources
+C:\Users\Memo\documents\visual studio 2010\Projects\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Consultas.resources
+G:\Mis Documentos\Visual Studio 2010\Projects\BiblioTech\BiblioTech\obj\Debug\BiblioTech.exe
+G:\Mis Documentos\Visual Studio 2010\Projects\BiblioTech\BiblioTech\obj\Debug\BiblioTech.pdb
+G:\Mis Documentos\Visual Studio 2010\Projects\BiblioTech\BiblioTech\bin\Debug\BiblioTech.exe
+G:\Mis Documentos\Visual Studio 2010\Projects\BiblioTech\BiblioTech\bin\Debug\BiblioTech.pdb
+G:\Mis Documentos\Visual Studio 2010\Projects\BiblioTech\BiblioTech\obj\Debug\BiblioTech.csprojResolveAssemblyReference.cache
+G:\Mis Documentos\Visual Studio 2010\Projects\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Consultas.resources
+G:\Mis Documentos\Visual Studio 2010\Projects\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Login.resources
+G:\Mis Documentos\Visual Studio 2010\Projects\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Principal.resources
+G:\Mis Documentos\Visual Studio 2010\Projects\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Usuarios.resources
+G:\Mis Documentos\Visual Studio 2010\Projects\BiblioTech\BiblioTech\obj\Debug\BiblioTech.Properties.Resources.resources
+G:\Mis Documentos\Visual Studio 2010\Projects\BiblioTech\BiblioTech\obj\Debug\BiblioTech.csproj.GenerateResource.Cache
+G:\Mis Documentos\Visual Studio 2010\Projects\BiblioTech\BiblioTech\obj\Debug\BiblioTech.exe.licenses
+G:\Mis Documentos\Visual Studio 2010\Projects\BiblioTech\BiblioTech\bin\Debug\Resources\Library mini.jpg
+G:\Mis Documentos\Visual Studio 2010\Projects\BiblioTech\BiblioTech\bin\Debug\BiblioTech.exe.config
+G:\Mis Documentos\Visual Studio 2010\Projects\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Libros.resources
+G:\Mis Documentos\Visual Studio 2010\Projects\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Config_App.resources
+G:\Mis Documentos\Visual Studio 2010\Projects\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Perdidos.resources
+G:\Mis Documentos\Visual Studio 2010\Projects\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Prestamos.resources
+G:\Mis Documentos\Visual Studio 2010\Projects\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Catalogo.resources
+G:\Mis Documentos\Visual Studio 2010\Projects\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Devoluciones.resources
+G:\Mis Documentos\Visual Studio 2010\Projects\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Buscar_Lector.resources
