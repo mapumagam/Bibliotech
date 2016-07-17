@@ -10,11 +10,14 @@ using DevExpress.XtraEditors;
 using BiblioTech.Entity;
 using BiblioTech.Modelos;
 using System.Data.Common;
+using MySql.Data.MySqlClient;
 
 namespace BiblioTech.GUIs
 {
     public partial class Frm_Config_App : XtraForm
     {
+        List<string> lstDatabases;
+
         public Frm_Config_App()
         {
             InitializeComponent();
@@ -45,42 +48,77 @@ namespace BiblioTech.GUIs
             localConfiguracion.Save();
 
             if (ProbarConexion() == true)
-            {
-                BibliotecaEntities Contexto = new BibliotecaEntities(Configuracion.ConnectionString);
-                Contexto.ExecuteStoreCommand("Show Databases", null);
-                Contexto.Dispose();
-            }
+                CargarBasesDeDatos();
         }
 
         private bool ProbarConexion()
         {
             try
             {
-                BibliotecaEntities Contexto = new BibliotecaEntities(Configuracion.ConnectionString);
+                cmbBasesDeDatos.Items.Clear();
+                var localConfiguracion = Properties.Settings.Default;
 
-                Contexto.Connection.Open();
-                var comm = Contexto.Connection.CreateCommand();
+                MySqlConnection MyConnection = new MySqlConnection();
+                MySqlCommand MyCommand = new MySqlCommand();
+                MySqlDataAdapter MyAdapter = new MySqlDataAdapter();
                 
-                comm.CommandText = "Show Databases";
-                var reader = comm.ExecuteReader();
+                MySqlConnectionStringBuilder MyStringBuilder = new MySqlConnectionStringBuilder();
+                MyStringBuilder.Server = localConfiguracion.ServidorBD;
+                MyStringBuilder.UserID  = localConfiguracion.UsuarioBD;
+                MyStringBuilder.Password = localConfiguracion.ContraseñaDB;
+                MyStringBuilder.Port = Convert.ToUInt32(localConfiguracion.PuertoBD);
 
-                List<string> lstReader = new List<string>();
-                while (reader.NextResult() == true)
-                {
-                    lstReader.Add((string)reader.GetValue(0));
-                }
-
-                Contexto.Connection.Close();
-
-                Contexto.Dispose();
-
+                MyConnection.ConnectionString = MyStringBuilder.ToString();
+                MyConnection.Open();
+                MyConnection.Close();
+                
                 return true;
             }
             catch
             {
                 return false;
             }
+        }
 
+        private void CargarBasesDeDatos()
+        {
+            try
+            {
+                cmbBasesDeDatos.Items.Clear();
+                var localConfiguracion = Properties.Settings.Default;
+
+                MySqlConnection MyConnection = new MySqlConnection();
+                MySqlCommand MyCommand = new MySqlCommand();
+                MySqlDataAdapter MyAdapter = new MySqlDataAdapter();
+
+                MySqlConnectionStringBuilder MyStringBuilder = new MySqlConnectionStringBuilder();
+                MyStringBuilder.Server = localConfiguracion.ServidorBD;
+                MyStringBuilder.UserID = localConfiguracion.UsuarioBD;
+                MyStringBuilder.Password = localConfiguracion.ContraseñaDB;
+                MyStringBuilder.Port = Convert.ToUInt32(localConfiguracion.PuertoBD);
+
+                MyConnection.ConnectionString = MyStringBuilder.ToString();
+                MyConnection.Open();
+
+                MyCommand.Connection = MyConnection;
+                MyCommand.CommandText = "SHOW DATABASES";
+
+                MyAdapter.SelectCommand = MyCommand;
+                DataTable TableDatabases = new DataTable();
+                MyAdapter.Fill(TableDatabases);
+
+                lstDatabases = new List<string>();
+                foreach (DataRow Fila in TableDatabases.Rows)
+                {
+                    cmbBasesDeDatos.Items.Add(Fila["Database"]);
+                }
+
+                MyConnection.Close();
+            }
+            catch
+            {
+
+            }
         }
     }
 }

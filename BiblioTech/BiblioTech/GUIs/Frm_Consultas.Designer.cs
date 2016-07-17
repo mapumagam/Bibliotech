@@ -48,9 +48,15 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
+            this.pnlBusqueda = new System.Windows.Forms.Panel();
+            this.btnAceptar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.pnlTitulo = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.gridConsulta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.librosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvConsulta)).BeginInit();
+            this.pnlBusqueda.SuspendLayout();
+            this.pnlTitulo.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblTitulo
@@ -66,17 +72,15 @@
             // 
             // gridConsulta
             // 
-            this.gridConsulta.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.gridConsulta.Cursor = System.Windows.Forms.Cursors.Default;
             this.gridConsulta.DataSource = this.librosBindingSource;
-            this.gridConsulta.Location = new System.Drawing.Point(0, 82);
+            this.gridConsulta.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridConsulta.Location = new System.Drawing.Point(0, 90);
             this.gridConsulta.LookAndFeel.SkinName = "Metropolis";
             this.gridConsulta.LookAndFeel.UseDefaultLookAndFeel = false;
             this.gridConsulta.MainView = this.gvConsulta;
             this.gridConsulta.Name = "gridConsulta";
-            this.gridConsulta.Size = new System.Drawing.Size(784, 328);
+            this.gridConsulta.Size = new System.Drawing.Size(784, 321);
             this.gridConsulta.TabIndex = 16;
             this.gridConsulta.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvConsulta});
@@ -128,7 +132,7 @@
             // colf_autor
             // 
             this.colf_autor.Caption = "Autor";
-            this.colf_autor.FieldName = "f_autor.descripcion";
+            this.colf_autor.FieldName = "autor.descripcion";
             this.colf_autor.Name = "colf_autor";
             this.colf_autor.Visible = true;
             this.colf_autor.VisibleIndex = 2;
@@ -136,7 +140,7 @@
             // colf_editorial
             // 
             this.colf_editorial.Caption = "Editorial";
-            this.colf_editorial.FieldName = "f_editorial.descripcion";
+            this.colf_editorial.FieldName = "editorial.descripcion";
             this.colf_editorial.Name = "colf_editorial";
             this.colf_editorial.Visible = true;
             this.colf_editorial.VisibleIndex = 3;
@@ -144,7 +148,7 @@
             // colf_area
             // 
             this.colf_area.Caption = "Área";
-            this.colf_area.FieldName = "f_area.descripcion";
+            this.colf_area.FieldName = "area.descripcion";
             this.colf_area.Name = "colf_area";
             this.colf_area.Visible = true;
             this.colf_area.VisibleIndex = 4;
@@ -178,7 +182,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(541, 30);
+            this.label1.Location = new System.Drawing.Point(541, 7);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(45, 16);
             this.label1.TabIndex = 17;
@@ -188,7 +192,7 @@
             // 
             this.txbArea.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txbArea.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbArea.Location = new System.Drawing.Point(544, 51);
+            this.txbArea.Location = new System.Drawing.Point(544, 28);
             this.txbArea.Name = "txbArea";
             this.txbArea.Size = new System.Drawing.Size(150, 23);
             this.txbArea.TabIndex = 18;
@@ -197,7 +201,7 @@
             // 
             this.textBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.textBox2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(278, 51);
+            this.textBox2.Location = new System.Drawing.Point(278, 28);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(260, 23);
             this.textBox2.TabIndex = 20;
@@ -207,7 +211,7 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(275, 30);
+            this.label2.Location = new System.Drawing.Point(275, 7);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 16);
             this.label2.TabIndex = 19;
@@ -217,7 +221,7 @@
             // 
             this.textBox3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.textBox3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(12, 51);
+            this.textBox3.Location = new System.Drawing.Point(12, 28);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(260, 23);
             this.textBox3.TabIndex = 22;
@@ -227,7 +231,7 @@
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 30);
+            this.label3.Location = new System.Drawing.Point(12, 7);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(48, 16);
             this.label3.TabIndex = 21;
@@ -237,7 +241,7 @@
             // 
             this.btnBuscar.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnBuscar.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscar.Location = new System.Drawing.Point(703, 48);
+            this.btnBuscar.Location = new System.Drawing.Point(703, 25);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(70, 28);
             this.btnBuscar.TabIndex = 23;
@@ -245,29 +249,78 @@
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
+            // pnlBusqueda
+            // 
+            this.pnlBusqueda.Controls.Add(this.btnAceptar);
+            this.pnlBusqueda.Controls.Add(this.btnCancelar);
+            this.pnlBusqueda.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlBusqueda.Location = new System.Drawing.Point(0, 411);
+            this.pnlBusqueda.Name = "pnlBusqueda";
+            this.pnlBusqueda.Size = new System.Drawing.Size(784, 50);
+            this.pnlBusqueda.TabIndex = 24;
+            this.pnlBusqueda.Visible = false;
+            // 
+            // btnAceptar
+            // 
+            this.btnAceptar.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnAceptar.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAceptar.Location = new System.Drawing.Point(566, 8);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(100, 30);
+            this.btnAceptar.TabIndex = 39;
+            this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAceptar.UseVisualStyleBackColor = true;
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnCancelar.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.Location = new System.Drawing.Point(672, 8);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(100, 30);
+            this.btnCancelar.TabIndex = 38;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            // 
+            // pnlTitulo
+            // 
+            this.pnlTitulo.Controls.Add(this.btnBuscar);
+            this.pnlTitulo.Controls.Add(this.label1);
+            this.pnlTitulo.Controls.Add(this.textBox3);
+            this.pnlTitulo.Controls.Add(this.txbArea);
+            this.pnlTitulo.Controls.Add(this.label3);
+            this.pnlTitulo.Controls.Add(this.label2);
+            this.pnlTitulo.Controls.Add(this.textBox2);
+            this.pnlTitulo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlTitulo.Location = new System.Drawing.Point(0, 30);
+            this.pnlTitulo.Name = "pnlTitulo";
+            this.pnlTitulo.Size = new System.Drawing.Size(784, 60);
+            this.pnlTitulo.TabIndex = 25;
+            // 
             // Frm_Consultas
             // 
             this.Appearance.Options.UseFont = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(784, 411);
-            this.Controls.Add(this.btnBuscar);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txbArea);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.gridConsulta);
+            this.Controls.Add(this.pnlBusqueda);
+            this.Controls.Add(this.pnlTitulo);
             this.Controls.Add(this.lblTitulo);
             this.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "Frm_Consultas";
             this.Text = "Consultas de libros";
+            this.Shown += new System.EventHandler(this.Frm_Consultas_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.gridConsulta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.librosBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvConsulta)).EndInit();
+            this.pnlBusqueda.ResumeLayout(false);
+            this.pnlTitulo.ResumeLayout(false);
+            this.pnlTitulo.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -292,5 +345,9 @@
         private DevExpress.XtraGrid.Columns.GridColumn colf_autor;
         private DevExpress.XtraGrid.Columns.GridColumn colf_editorial;
         private DevExpress.XtraGrid.Columns.GridColumn colf_area;
+        private System.Windows.Forms.Panel pnlBusqueda;
+        private System.Windows.Forms.Button btnAceptar;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Panel pnlTitulo;
     }
 }

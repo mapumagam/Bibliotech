@@ -121,4 +121,7 @@
   <data name="Library mini" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Library mini.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Cargando" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Cargando.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

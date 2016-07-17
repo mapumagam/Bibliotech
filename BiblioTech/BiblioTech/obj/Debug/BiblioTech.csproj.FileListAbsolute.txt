@@ -34,3 +34,22 @@ G:\Mis Documentos\Visual Studio 2010\Projects\BiblioTech\BiblioTech\obj\Debug\Bi
 D:\GitHub\Bibliotech\BiblioTech\BiblioTech\bin\Debug\BiblioTech.exe.config
 D:\GitHub\Bibliotech\BiblioTech\BiblioTech\obj\Debug\BiblioTech.exe
 D:\GitHub\Bibliotech\BiblioTech\BiblioTech\obj\Debug\BiblioTech.pdb
+D:\GitHub\Bibliotech\BiblioTech\BiblioTech\bin\Debug\Resources\Library mini.jpg
+D:\GitHub\Bibliotech\BiblioTech\BiblioTech\bin\Debug\BiblioTech.exe
+D:\GitHub\Bibliotech\BiblioTech\BiblioTech\bin\Debug\BiblioTech.pdb
+D:\GitHub\Bibliotech\BiblioTech\BiblioTech\obj\Debug\BiblioTech.csprojResolveAssemblyReference.cache
+D:\GitHub\Bibliotech\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Buscar_Lector.resources
+D:\GitHub\Bibliotech\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Catalogo.resources
+D:\GitHub\Bibliotech\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Config_App.resources
+D:\GitHub\Bibliotech\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Consultas.resources
+D:\GitHub\Bibliotech\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Devoluciones.resources
+D:\GitHub\Bibliotech\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Libros.resources
+D:\GitHub\Bibliotech\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Login.resources
+D:\GitHub\Bibliotech\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Perdidos.resources
+D:\GitHub\Bibliotech\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Prestamos.resources
+D:\GitHub\Bibliotech\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Principal.resources
+D:\GitHub\Bibliotech\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Usuarios.resources
+D:\GitHub\Bibliotech\BiblioTech\BiblioTech\obj\Debug\BiblioTech.Properties.Resources.resources
+D:\GitHub\Bibliotech\BiblioTech\BiblioTech\obj\Debug\BiblioTech.csproj.GenerateResource.Cache
+D:\GitHub\Bibliotech\BiblioTech\BiblioTech\obj\Debug\BiblioTech.exe.licenses
+D:\GitHub\Bibliotech\BiblioTech\BiblioTech\bin\Debug\MySql.Data.dll

@@ -14,7 +14,8 @@ namespace BiblioTech.GUIs
 {
     public partial class Frm_Login : XtraForm
     {
-        BibliotecaEntities Contexto = new BibliotecaEntities(Configuracion.ConnectionString);
+        BibliotecaEntities Contexto;
+
         public Frm_Login()
         {
             InitializeComponent();
@@ -43,9 +44,17 @@ namespace BiblioTech.GUIs
                 
             catch (EntityException enex)
             {
+                pbCargando.Visible = true;
+                Application.DoEvents();
+
+                DialogResult dr =
                 MessageBox.Show("No fue posible conectar con el servidor de base de datos... por favor configure la aplicación para lograr el acceso.", 
                                 "Configurar", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
-                new Frm_Config_App().ShowDialog();
+
+                if (dr == DialogResult.Yes)
+                    new Frm_Config_App().ShowDialog();
+
+                pbCargando.Visible = false;
             }
             catch (Exception ex)
             {

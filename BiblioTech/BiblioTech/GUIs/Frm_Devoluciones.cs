@@ -59,6 +59,7 @@ namespace BiblioTech.GUIs
                 MessageBox.Show(ex.ToString());
             }
         }
+
         private void Devolver()
         {
             DialogResult dr = MessageBox.Show("¿Los datos son correctos?", "Devolver", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -73,7 +74,6 @@ namespace BiblioTech.GUIs
                 Contexto.SaveChanges();
 
                 MessageBox.Show("¡La devolucion se ha efectuado con exito!");
-
 
                 Lector = Contexto.usuarios.FirstOrDefault(o => o.matricula == Lector.matricula);
                 ActualizarGrid(Lector);

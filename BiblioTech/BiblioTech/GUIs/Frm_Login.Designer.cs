@@ -35,6 +35,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.pbCargando = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pbCargando)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -106,12 +108,25 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // pbCargando
+            // 
+            this.pbCargando.Image = global::BiblioTech.Properties.Resources.Cargando;
+            this.pbCargando.Location = new System.Drawing.Point(155, 12);
+            this.pbCargando.Name = "pbCargando";
+            this.pbCargando.Size = new System.Drawing.Size(305, 177);
+            this.pbCargando.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbCargando.TabIndex = 7;
+            this.pbCargando.TabStop = false;
+            this.pbCargando.Visible = false;
+            this.pbCargando.WaitOnLoad = true;
+            // 
             // Frm_Login
             // 
             this.Appearance.Options.UseFont = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(584, 201);
+            this.Controls.Add(this.pbCargando);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.label3);
@@ -126,6 +141,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Escuela Normal Rural J. Guadalupe Aguilera";
             this.Shown += new System.EventHandler(this.Frm_Login_Shown);
+            ((System.ComponentModel.ISupportInitialize)(this.pbCargando)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -140,5 +156,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.PictureBox pbCargando;
     }
 }
