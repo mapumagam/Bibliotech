@@ -64,6 +64,7 @@
     <EntitySetMapping Name="usuarios_app">
       <EntityTypeMapping TypeName="BibliotecaModel.usuarios_app">
         <MappingFragment StoreEntitySet="usuarios_app">
+          <ScalarProperty Name="permisos" ColumnName="permisos" />
           <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
           <ScalarProperty Name="nombre_usuario" ColumnName="nombre_usuario" />
           <ScalarProperty Name="contrasenia" ColumnName="contrasenia" />

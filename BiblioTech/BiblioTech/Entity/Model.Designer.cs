@@ -1649,7 +1649,8 @@ namespace BiblioTech.Entity
         /// <param name="contrasenia">Valor inicial de la propiedad contrasenia.</param>
         /// <param name="estado">Valor inicial de la propiedad estado.</param>
         /// <param name="nombre_completo">Valor inicial de la propiedad nombre_completo.</param>
-        public static usuarios_app Createusuarios_app(global::System.Int64 id_usuario, global::System.String nombre_usuario, global::System.String contrasenia, global::System.Boolean estado, global::System.String nombre_completo)
+        /// <param name="permisos">Valor inicial de la propiedad permisos.</param>
+        public static usuarios_app Createusuarios_app(global::System.Int64 id_usuario, global::System.String nombre_usuario, global::System.String contrasenia, global::System.Boolean estado, global::System.String nombre_completo, global::System.String permisos)
         {
             usuarios_app usuarios_app = new usuarios_app();
             usuarios_app.id_usuario = id_usuario;
@@ -1657,6 +1658,7 @@ namespace BiblioTech.Entity
             usuarios_app.contrasenia = contrasenia;
             usuarios_app.estado = estado;
             usuarios_app.nombre_completo = nombre_completo;
+            usuarios_app.permisos = permisos;
             return usuarios_app;
         }
 
@@ -1786,6 +1788,30 @@ namespace BiblioTech.Entity
         private global::System.String _nombre_completo;
         partial void Onnombre_completoChanging(global::System.String value);
         partial void Onnombre_completoChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String permisos
+        {
+            get
+            {
+                return _permisos;
+            }
+            set
+            {
+                OnpermisosChanging(value);
+                ReportPropertyChanging("permisos");
+                _permisos = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("permisos");
+                OnpermisosChanged();
+            }
+        }
+        private global::System.String _permisos;
+        partial void OnpermisosChanging(global::System.String value);
+        partial void OnpermisosChanged();
 
         #endregion
 

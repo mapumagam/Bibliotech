@@ -56,9 +56,9 @@
             // 
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.button1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(617, 53);
+            this.button1.Location = new System.Drawing.Point(617, 51);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(150, 27);
+            this.button1.Size = new System.Drawing.Size(150, 30);
             this.button1.TabIndex = 29;
             this.button1.Text = "Buscar Libro";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -88,9 +88,9 @@
             // 
             this.button2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.button2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(617, 116);
+            this.button2.Location = new System.Drawing.Point(617, 114);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(150, 26);
+            this.button2.Size = new System.Drawing.Size(150, 30);
             this.button2.TabIndex = 32;
             this.button2.Text = "Buscar Lector";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -128,6 +128,7 @@
             // 
             // dateTimePicker1
             // 
+            this.dateTimePicker1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.dateTimePicker1.Location = new System.Drawing.Point(197, 145);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(414, 26);

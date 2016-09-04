@@ -30,6 +30,8 @@
         {
             this.lblTitulo = new System.Windows.Forms.Label();
             this.GrpBaseDeDatos = new System.Windows.Forms.GroupBox();
+            this.btn_CargarBases = new System.Windows.Forms.Button();
+            this.txbPuerto = new System.Windows.Forms.TextBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.cmbBasesDeDatos = new System.Windows.Forms.ComboBox();
             this.btnGuardar = new System.Windows.Forms.Button();
@@ -41,7 +43,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txbServidor = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txbPuerto = new System.Windows.Forms.TextBox();
             this.GrpBaseDeDatos.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,6 +62,7 @@
             this.GrpBaseDeDatos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.GrpBaseDeDatos.Controls.Add(this.btn_CargarBases);
             this.GrpBaseDeDatos.Controls.Add(this.txbPuerto);
             this.GrpBaseDeDatos.Controls.Add(this.btnCancelar);
             this.GrpBaseDeDatos.Controls.Add(this.cmbBasesDeDatos);
@@ -80,6 +82,29 @@
             this.GrpBaseDeDatos.TabStop = false;
             this.GrpBaseDeDatos.Text = "Configurar conexión a la base de datos";
             // 
+            // btn_CargarBases
+            // 
+            this.btn_CargarBases.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btn_CargarBases.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_CargarBases.Location = new System.Drawing.Point(608, 172);
+            this.btn_CargarBases.Name = "btn_CargarBases";
+            this.btn_CargarBases.Size = new System.Drawing.Size(196, 30);
+            this.btn_CargarBases.TabIndex = 15;
+            this.btn_CargarBases.Text = "Cargar bases de datos";
+            this.btn_CargarBases.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_CargarBases.UseVisualStyleBackColor = true;
+            this.btn_CargarBases.Click += new System.EventHandler(this.btn_CargarBases_Click);
+            // 
+            // txbPuerto
+            // 
+            this.txbPuerto.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txbPuerto.Location = new System.Drawing.Point(201, 142);
+            this.txbPuerto.Name = "txbPuerto";
+            this.txbPuerto.Size = new System.Drawing.Size(97, 26);
+            this.txbPuerto.TabIndex = 14;
+            this.txbPuerto.Text = "99999";
+            this.txbPuerto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbPuerto_KeyPress);
+            // 
             // btnCancelar
             // 
             this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -91,16 +116,17 @@
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // cmbBasesDeDatos
             // 
             this.cmbBasesDeDatos.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.cmbBasesDeDatos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbBasesDeDatos.FormattingEnabled = true;
             this.cmbBasesDeDatos.Location = new System.Drawing.Point(201, 174);
             this.cmbBasesDeDatos.Name = "cmbBasesDeDatos";
-            this.cmbBasesDeDatos.Size = new System.Drawing.Size(520, 26);
+            this.cmbBasesDeDatos.Size = new System.Drawing.Size(401, 26);
             this.cmbBasesDeDatos.TabIndex = 12;
-            this.cmbBasesDeDatos.Click += new System.EventHandler(this.cmbBasesDeDatos_Click);
             // 
             // btnGuardar
             // 
@@ -113,6 +139,7 @@
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // label5
             // 
@@ -197,15 +224,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Servidor:";
             // 
-            // txbPuerto
-            // 
-            this.txbPuerto.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txbPuerto.Location = new System.Drawing.Point(201, 142);
-            this.txbPuerto.Name = "txbPuerto";
-            this.txbPuerto.Size = new System.Drawing.Size(97, 26);
-            this.txbPuerto.TabIndex = 14;
-            this.txbPuerto.Text = "Contraseña";
-            // 
             // Frm_Config_App
             // 
             this.Appearance.Options.UseFont = true;
@@ -217,6 +235,7 @@
             this.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MinimumSize = new System.Drawing.Size(850, 400);
             this.Name = "Frm_Config_App";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Administración - Configuracón";
             this.Shown += new System.EventHandler(this.Frm_Config_App_Shown);
             this.GrpBaseDeDatos.ResumeLayout(false);
@@ -241,5 +260,6 @@
         private System.Windows.Forms.TextBox txbServidor;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txbPuerto;
+        private System.Windows.Forms.Button btn_CargarBases;
     }
 }

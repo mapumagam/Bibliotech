@@ -1,22 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Linq;
 using System.Windows.Forms;
-using DevExpress.XtraEditors;
-using BiblioTech.Entity;
 using BiblioTech.Modelos;
-using System.Data.Common;
+using DevExpress.XtraEditors;
 using MySql.Data.MySqlClient;
 
 namespace BiblioTech.GUIs
 {
     public partial class Frm_Config_App : XtraForm
     {
-        List<string> lstDatabases;
+        private MySqlConnection MyConexion;
+        private MySqlCommand MyComando;
+        private MySqlDataAdapter MyAdapter;
 
         public Frm_Config_App()
         {
@@ -25,6 +21,10 @@ namespace BiblioTech.GUIs
 
         private void Frm_Config_App_Shown(object sender, EventArgs e)
         {
+            MyConexion = new MySqlConnection();
+            MyComando = new MySqlCommand();
+            MyAdapter = new MySqlDataAdapter();
+
             var Configuracion = Properties.Settings.Default;
 
             txbServidor.Text = Configuracion.ServidorBD;
@@ -33,92 +33,93 @@ namespace BiblioTech.GUIs
             txbPuerto.Text = Configuracion.PuertoBD;
         }
 
-        private void cmbBasesDeDatos_Click(object sender, EventArgs e)
+        private string ObtenerStringDeConexion()
         {
-            PoblarComboBox();
+            MySqlConnectionStringBuilder StringDeConexion = new MySqlConnectionStringBuilder();
+            var Configuraciones = Properties.Settings.Default;
+
+            StringDeConexion.Server = txbServidor.Text;
+            StringDeConexion.UserID = txbUsuario.Text;
+            StringDeConexion.Password = txbContraseña.Text;
+            StringDeConexion.Port = Convert.ToUInt32(txbPuerto.Text);
+
+            return StringDeConexion.ToString();
         }
         private void PoblarComboBox()
         {
-            var localConfiguracion = Properties.Settings.Default;
-
-            localConfiguracion.ServidorBD = txbServidor.Text;
-            localConfiguracion.UsuarioBD = txbUsuario.Text;
-            localConfiguracion.ContraseñaDB = txbContraseña.Text;
-            localConfiguracion.PuertoBD = txbPuerto.Text;
-            localConfiguracion.Save();
-
-            if (ProbarConexion() == true)
-                CargarBasesDeDatos();
-        }
-
-        private bool ProbarConexion()
-        {
+            List<string> lstBasesDeDatos = new List<string>();
+            MyConexion.ConnectionString = ObtenerStringDeConexion();
             try
             {
-                cmbBasesDeDatos.Items.Clear();
-                var localConfiguracion = Properties.Settings.Default;
+                MyConexion.Open();
 
-                MySqlConnection MyConnection = new MySqlConnection();
-                MySqlCommand MyCommand = new MySqlCommand();
-                MySqlDataAdapter MyAdapter = new MySqlDataAdapter();
+                MyComando.Connection = MyConexion;
+                MyComando.CommandText = "Show Databases";
+
+                DataTable dtBasesDeDatos = new DataTable();
+                MyAdapter.SelectCommand = MyComando;
+                MyAdapter.Fill(dtBasesDeDatos);
+
                 
-                MySqlConnectionStringBuilder MyStringBuilder = new MySqlConnectionStringBuilder();
-                MyStringBuilder.Server = localConfiguracion.ServidorBD;
-                MyStringBuilder.UserID  = localConfiguracion.UsuarioBD;
-                MyStringBuilder.Password = localConfiguracion.ContraseñaDB;
-                MyStringBuilder.Port = Convert.ToUInt32(localConfiguracion.PuertoBD);
-
-                MyConnection.ConnectionString = MyStringBuilder.ToString();
-                MyConnection.Open();
-                MyConnection.Close();
-                
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        private void CargarBasesDeDatos()
-        {
-            try
-            {
-                cmbBasesDeDatos.Items.Clear();
-                var localConfiguracion = Properties.Settings.Default;
-
-                MySqlConnection MyConnection = new MySqlConnection();
-                MySqlCommand MyCommand = new MySqlCommand();
-                MySqlDataAdapter MyAdapter = new MySqlDataAdapter();
-
-                MySqlConnectionStringBuilder MyStringBuilder = new MySqlConnectionStringBuilder();
-                MyStringBuilder.Server = localConfiguracion.ServidorBD;
-                MyStringBuilder.UserID = localConfiguracion.UsuarioBD;
-                MyStringBuilder.Password = localConfiguracion.ContraseñaDB;
-                MyStringBuilder.Port = Convert.ToUInt32(localConfiguracion.PuertoBD);
-
-                MyConnection.ConnectionString = MyStringBuilder.ToString();
-                MyConnection.Open();
-
-                MyCommand.Connection = MyConnection;
-                MyCommand.CommandText = "SHOW DATABASES";
-
-                MyAdapter.SelectCommand = MyCommand;
-                DataTable TableDatabases = new DataTable();
-                MyAdapter.Fill(TableDatabases);
-
-                lstDatabases = new List<string>();
-                foreach (DataRow Fila in TableDatabases.Rows)
+                foreach (DataRow Fila in dtBasesDeDatos.Rows)
                 {
-                    cmbBasesDeDatos.Items.Add(Fila["Database"]);
-                }
-
-                MyConnection.Close();
+                    lstBasesDeDatos.Add(Convert.ToString(Fila["Database"]));
+                }             
             }
             catch
             {
-
+                XtraMessageBox.Show("No se pudo abrir la conexión a la base de datos...", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            if (MyConexion.State != ConnectionState.Closed)
+            {
+                MyConexion.Close();
+            }
+
+            cmbBasesDeDatos.DataSource = lstBasesDeDatos;
+        }
+
+        private void btn_CargarBases_Click(object sender, EventArgs e)
+        {
+            PoblarComboBox();
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            Guardar();
+        }
+        private void Guardar()
+        {
+            string baseDedatos = string.Empty;
+            if (cmbBasesDeDatos.Items.Count != 0)
+                baseDedatos = Convert.ToString(cmbBasesDeDatos.SelectedItem);
+
+            var Configuraciones = Properties.Settings.Default;
+            Configuraciones.ServidorBD = txbServidor.Text;
+            Configuraciones.UsuarioBD = txbUsuario.Text;
+            Configuraciones.ContraseñaDB = txbContraseña.Text;
+            Configuraciones.PuertoBD = txbPuerto.Text;
+            Configuraciones.BaseDeDatos = baseDedatos;
+            Configuraciones.Save();
+
+            XtraMessageBox.Show("Los datos fueron guardados con exito.", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void txbPuerto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar) || Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

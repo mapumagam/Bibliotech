@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BibliotecaModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="BibliotecaModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="BibliotecaModelStoreContainer">
           <EntitySet Name="catalogos" EntityType="BibliotecaModel.Store.catalogos" store:Type="Tables" Schema="biblioteca_enrjga" />
           <EntitySet Name="libros" EntityType="BibliotecaModel.Store.libros" store:Type="Tables" Schema="biblioteca_enrjga" />
@@ -81,7 +81,7 @@
           <Key>
             <PropertyRef Name="id_prestamo" />
           </Key>
-          <Property Name="id_prestamo" Type="uint" Nullable="false" />
+          <Property Name="id_prestamo" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="matricula" Type="varchar" Nullable="false" MaxLength="10" />
           <Property Name="fecha_prestamo" Type="date" Nullable="false" />
           <Property Name="fecha_entrega_sugerida" Type="date" Nullable="false" />
@@ -104,11 +104,12 @@
           <Key>
             <PropertyRef Name="id_usuario" />
           </Key>
-          <Property Name="id_usuario" Type="uint" Nullable="false" />
+          <Property Name="id_usuario" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="nombre_usuario" Type="varchar" Nullable="false" MaxLength="15" />
-          <Property Name="contrasenia" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="contrasenia" Type="varchar" Nullable="false" MaxLength="35" />
           <Property Name="estado" Type="bit" Nullable="false" />
           <Property Name="nombre_completo" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="permisos" Type="varchar" Nullable="false" MaxLength="255" />
         </EntityType>
         <Association Name="fk_area">
           <End Role="catalogos" Type="BibliotecaModel.Store.catalogos" Multiplicity="1" />
@@ -206,8 +207,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BibliotecaModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -331,6 +331,7 @@
           <Property Name="estado" Type="Boolean" Nullable="false" />
           <Property Name="nombre_completo" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="prestamos" Relationship="BibliotecaModel.fk_usuario_app_prestamo" FromRole="usuarios_app" ToRole="prestamos" />
+          <Property Type="String" Name="permisos" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="fk_area">
           <End Role="catalogos" Type="BibliotecaModel.catalogos" Multiplicity="1" />
@@ -497,6 +498,7 @@
           <EntitySetMapping Name="usuarios_app">
             <EntityTypeMapping TypeName="BibliotecaModel.usuarios_app">
               <MappingFragment StoreEntitySet="usuarios_app">
+                <ScalarProperty Name="permisos" ColumnName="permisos" />
                 <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
                 <ScalarProperty Name="nombre_usuario" ColumnName="nombre_usuario" />
                 <ScalarProperty Name="contrasenia" ColumnName="contrasenia" />

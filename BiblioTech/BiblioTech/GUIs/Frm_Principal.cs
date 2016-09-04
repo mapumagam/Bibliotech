@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
-using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using System.Reflection;
 
 namespace BiblioTech.GUIs
 {
@@ -20,7 +15,7 @@ namespace BiblioTech.GUIs
         private Frm_Prestamos frmPrestamos;
         private Frm_Config_App frmConfigApp;
         private Frm_Devoluciones frmDevoluciones;
-
+        private Frm_UsuariosApp frmUsuariosApp;
         public Frm_Principal()
         {
             InitializeComponent();
@@ -42,6 +37,7 @@ namespace BiblioTech.GUIs
             CrearFormulario(ref frmPrestamos);
             CrearFormulario(ref frmConfigApp);
             CrearFormulario(ref frmDevoluciones);
+            CrearFormulario(ref frmUsuariosApp);
         }
         private void MostrarFormulario<T>(ref T Frm) where T : new()
         {
@@ -95,6 +91,11 @@ namespace BiblioTech.GUIs
             InicializarFormularios();
             this.BackgroundImage = new Bitmap(@"./Resources/Library mini.jpg");
             this.BackgroundImageLayout = ImageLayout.Zoom;
+        }
+
+        private void navItemUsuariosApp_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            MostrarFormulario(ref frmUsuariosApp);
         }
     }
 }

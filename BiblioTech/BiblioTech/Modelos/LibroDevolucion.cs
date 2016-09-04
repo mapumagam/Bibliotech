@@ -9,6 +9,7 @@ namespace BiblioTech.Modelos
     public class LibroDevolucion
     {
         public bool Seleccionado { set; get; }
+        public long id_prestamo { set; get; }
         public libros Libro { set; get; }
     }
 }

@@ -32,16 +32,16 @@
             this.lblTitulo = new System.Windows.Forms.Label();
             this.txbMatricula = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txbTitulo = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnBuscarLibro = new System.Windows.Forms.Button();
+            this.btnBuscarLector = new System.Windows.Forms.Button();
+            this.btnAgregar = new System.Windows.Forms.Button();
+            this.btnAceptar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.librosBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gridConsulta = new DevExpress.XtraGrid.GridControl();
-            this.gvConsulta = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridPrestamos = new DevExpress.XtraGrid.GridControl();
+            this.gvPrestamos = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colclave = new DevExpress.XtraGrid.Columns.GridColumn();
             this.coltitulo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colf_autor = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -49,10 +49,9 @@
             this.colf_area = new DevExpress.XtraGrid.Columns.GridColumn();
             this.coledicion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colanio = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colno_ejemplares = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.librosBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridConsulta)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvConsulta)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridPrestamos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvPrestamos)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitulo
@@ -69,6 +68,7 @@
             // txbMatricula
             // 
             this.txbMatricula.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txbMatricula.Enabled = false;
             this.txbMatricula.Location = new System.Drawing.Point(212, 43);
             this.txbMatricula.Name = "txbMatricula";
             this.txbMatricula.Size = new System.Drawing.Size(414, 26);
@@ -85,14 +85,15 @@
             this.label1.TabIndex = 20;
             this.label1.Text = "ID / Matricula:";
             // 
-            // textBox1
+            // txbTitulo
             // 
-            this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.textBox1.Location = new System.Drawing.Point(212, 75);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(414, 58);
-            this.textBox1.TabIndex = 23;
+            this.txbTitulo.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txbTitulo.Enabled = false;
+            this.txbTitulo.Location = new System.Drawing.Point(212, 75);
+            this.txbTitulo.Multiline = true;
+            this.txbTitulo.Name = "txbTitulo";
+            this.txbTitulo.Size = new System.Drawing.Size(414, 58);
+            this.txbTitulo.TabIndex = 23;
             // 
             // label2
             // 
@@ -105,110 +106,114 @@
             this.label2.TabIndex = 22;
             this.label2.Text = "Titulo:";
             // 
-            // button1
+            // btnBuscarLibro
             // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.button1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(632, 76);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(150, 27);
-            this.button1.TabIndex = 26;
-            this.button1.Text = "Buscar Libro";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnBuscarLibro.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnBuscarLibro.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscarLibro.Location = new System.Drawing.Point(632, 74);
+            this.btnBuscarLibro.Name = "btnBuscarLibro";
+            this.btnBuscarLibro.Size = new System.Drawing.Size(150, 30);
+            this.btnBuscarLibro.TabIndex = 26;
+            this.btnBuscarLibro.Text = "Buscar Libro";
+            this.btnBuscarLibro.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnBuscarLibro.UseVisualStyleBackColor = true;
+            this.btnBuscarLibro.Click += new System.EventHandler(this.btnBuscarLibro_Click);
             // 
-            // button2
+            // btnBuscarLector
             // 
-            this.button2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.button2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(632, 43);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(150, 27);
-            this.button2.TabIndex = 27;
-            this.button2.Text = "Buscar Lector";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnBuscarLector.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnBuscarLector.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscarLector.Location = new System.Drawing.Point(632, 41);
+            this.btnBuscarLector.Name = "btnBuscarLector";
+            this.btnBuscarLector.Size = new System.Drawing.Size(150, 30);
+            this.btnBuscarLector.TabIndex = 27;
+            this.btnBuscarLector.Text = "Buscar Lector";
+            this.btnBuscarLector.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnBuscarLector.UseVisualStyleBackColor = true;
+            this.btnBuscarLector.Click += new System.EventHandler(this.btnBuscarLector_Click);
             // 
-            // button3
+            // btnAgregar
             // 
-            this.button3.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.button3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(342, 139);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(150, 27);
-            this.button3.TabIndex = 28;
-            this.button3.Text = "Agregar a la lista";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnAgregar.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnAgregar.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregar.Location = new System.Drawing.Point(342, 139);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(150, 30);
+            this.btnAgregar.TabIndex = 28;
+            this.btnAgregar.Text = "Agregar a la lista";
+            this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
-            // button4
+            // btnAceptar
             // 
-            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(616, 420);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(100, 30);
-            this.button4.TabIndex = 30;
-            this.button4.Text = "Aceptar";
-            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAceptar.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAceptar.Location = new System.Drawing.Point(616, 420);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(100, 30);
+            this.btnAceptar.TabIndex = 30;
+            this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
-            // button5
+            // btnCancelar
             // 
-            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(722, 420);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(100, 30);
-            this.button5.TabIndex = 31;
-            this.button5.Text = "Cancelar";
-            this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelar.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.Location = new System.Drawing.Point(722, 420);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(100, 30);
+            this.btnCancelar.TabIndex = 31;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // librosBindingSource
             // 
             this.librosBindingSource.DataSource = typeof(BiblioTech.Entity.libros);
             // 
-            // gridConsulta
+            // gridPrestamos
             // 
-            this.gridConsulta.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.gridPrestamos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridConsulta.Cursor = System.Windows.Forms.Cursors.Default;
-            this.gridConsulta.DataSource = this.librosBindingSource;
-            this.gridConsulta.Location = new System.Drawing.Point(12, 172);
-            this.gridConsulta.LookAndFeel.SkinName = "Metropolis";
-            this.gridConsulta.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.gridConsulta.MainView = this.gvConsulta;
-            this.gridConsulta.Name = "gridConsulta";
-            this.gridConsulta.Size = new System.Drawing.Size(810, 242);
-            this.gridConsulta.TabIndex = 32;
-            this.gridConsulta.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gvConsulta});
+            this.gridPrestamos.Cursor = System.Windows.Forms.Cursors.Default;
+            this.gridPrestamos.DataSource = this.librosBindingSource;
+            this.gridPrestamos.Location = new System.Drawing.Point(12, 175);
+            this.gridPrestamos.LookAndFeel.SkinName = "Metropolis";
+            this.gridPrestamos.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.gridPrestamos.MainView = this.gvPrestamos;
+            this.gridPrestamos.Name = "gridPrestamos";
+            this.gridPrestamos.Size = new System.Drawing.Size(810, 239);
+            this.gridPrestamos.TabIndex = 32;
+            this.gridPrestamos.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gvPrestamos});
             // 
-            // gvConsulta
+            // gvPrestamos
             // 
-            this.gvConsulta.Appearance.EvenRow.BackColor = System.Drawing.Color.Gainsboro;
-            this.gvConsulta.Appearance.EvenRow.BackColor2 = System.Drawing.Color.Gainsboro;
-            this.gvConsulta.Appearance.EvenRow.Options.UseBackColor = true;
-            this.gvConsulta.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gvConsulta.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gvConsulta.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gvConsulta.Appearance.Row.Options.UseFont = true;
-            this.gvConsulta.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gvPrestamos.Appearance.EvenRow.BackColor = System.Drawing.Color.Gainsboro;
+            this.gvPrestamos.Appearance.EvenRow.BackColor2 = System.Drawing.Color.Gainsboro;
+            this.gvPrestamos.Appearance.EvenRow.Options.UseBackColor = true;
+            this.gvPrestamos.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gvPrestamos.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gvPrestamos.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gvPrestamos.Appearance.Row.Options.UseFont = true;
+            this.gvPrestamos.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colclave,
             this.coltitulo,
             this.colf_autor,
             this.colf_editorial,
             this.colf_area,
             this.coledicion,
-            this.colanio,
-            this.colno_ejemplares});
-            this.gvConsulta.GridControl = this.gridConsulta;
-            this.gvConsulta.Name = "gvConsulta";
-            this.gvConsulta.OptionsBehavior.Editable = false;
-            this.gvConsulta.OptionsView.EnableAppearanceEvenRow = true;
-            this.gvConsulta.OptionsView.ShowGroupPanel = false;
+            this.colanio});
+            this.gvPrestamos.GridControl = this.gridPrestamos;
+            this.gvPrestamos.Name = "gvPrestamos";
+            this.gvPrestamos.OptionsBehavior.Editable = false;
+            this.gvPrestamos.OptionsView.EnableAppearanceEvenRow = true;
+            this.gvPrestamos.OptionsView.ShowGroupPanel = false;
             // 
             // colclave
             // 
@@ -229,7 +234,7 @@
             // colf_autor
             // 
             this.colf_autor.Caption = "Autor";
-            this.colf_autor.FieldName = "f_autor.descripcion";
+            this.colf_autor.FieldName = "autor.descripcion";
             this.colf_autor.Name = "colf_autor";
             this.colf_autor.Visible = true;
             this.colf_autor.VisibleIndex = 2;
@@ -237,7 +242,7 @@
             // colf_editorial
             // 
             this.colf_editorial.Caption = "Editorial";
-            this.colf_editorial.FieldName = "f_editorial.descripcion";
+            this.colf_editorial.FieldName = "editorial.descripcion";
             this.colf_editorial.Name = "colf_editorial";
             this.colf_editorial.Visible = true;
             this.colf_editorial.VisibleIndex = 3;
@@ -245,7 +250,7 @@
             // colf_area
             // 
             this.colf_area.Caption = "Área";
-            this.colf_area.FieldName = "f_area.descripcion";
+            this.colf_area.FieldName = "area.descripcion";
             this.colf_area.Name = "colf_area";
             this.colf_area.Visible = true;
             this.colf_area.VisibleIndex = 4;
@@ -266,27 +271,19 @@
             this.colanio.Visible = true;
             this.colanio.VisibleIndex = 6;
             // 
-            // colno_ejemplares
-            // 
-            this.colno_ejemplares.Caption = "Ejemplares";
-            this.colno_ejemplares.FieldName = "no_ejemplares";
-            this.colno_ejemplares.Name = "colno_ejemplares";
-            this.colno_ejemplares.Visible = true;
-            this.colno_ejemplares.VisibleIndex = 7;
-            // 
             // Frm_Prestamos
             // 
             this.Appearance.Options.UseFont = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(834, 462);
-            this.Controls.Add(this.gridConsulta);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.gridPrestamos);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnAceptar);
+            this.Controls.Add(this.btnAgregar);
+            this.Controls.Add(this.btnBuscarLector);
+            this.Controls.Add(this.btnBuscarLibro);
+            this.Controls.Add(this.txbTitulo);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txbMatricula);
             this.Controls.Add(this.label1);
@@ -294,10 +291,12 @@
             this.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MinimumSize = new System.Drawing.Size(850, 400);
             this.Name = "Frm_Prestamos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Administración - Prestamos de Libros";
+            this.Shown += new System.EventHandler(this.Frm_Prestamos_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.librosBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridConsulta)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvConsulta)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridPrestamos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvPrestamos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -308,16 +307,16 @@
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.TextBox txbMatricula;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txbTitulo;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnBuscarLibro;
+        private System.Windows.Forms.Button btnBuscarLector;
+        private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.Button btnAceptar;
+        private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.BindingSource librosBindingSource;
-        private DevExpress.XtraGrid.GridControl gridConsulta;
-        private DevExpress.XtraGrid.Views.Grid.GridView gvConsulta;
+        private DevExpress.XtraGrid.GridControl gridPrestamos;
+        private DevExpress.XtraGrid.Views.Grid.GridView gvPrestamos;
         private DevExpress.XtraGrid.Columns.GridColumn colclave;
         private DevExpress.XtraGrid.Columns.GridColumn coltitulo;
         private DevExpress.XtraGrid.Columns.GridColumn colf_autor;
@@ -325,6 +324,5 @@
         private DevExpress.XtraGrid.Columns.GridColumn colf_area;
         private DevExpress.XtraGrid.Columns.GridColumn coledicion;
         private DevExpress.XtraGrid.Columns.GridColumn colanio;
-        private DevExpress.XtraGrid.Columns.GridColumn colno_ejemplares;
     }
 }

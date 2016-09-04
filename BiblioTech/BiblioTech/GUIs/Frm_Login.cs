@@ -1,21 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Linq;
 using System.Windows.Forms;
-using DevExpress.XtraEditors;
 using BiblioTech.Entity;
 using BiblioTech.Modelos;
+using DevExpress.XtraEditors;
 
 namespace BiblioTech.GUIs
 {
     public partial class Frm_Login : XtraForm
     {
-        BibliotecaEntities Contexto;
-
+        BibliotecaEntities Contexto = new BibliotecaEntities(Configuracion.ConnectionString);
         public Frm_Login()
         {
             InitializeComponent();
@@ -28,38 +22,45 @@ namespace BiblioTech.GUIs
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            new Frm_Principal().ShowDialog();
-            this.Close();
+            IniciarSesion();
         }
-
-        private void Frm_Login_Shown(object sender, EventArgs e)
+        private void IniciarSesion()
         {
+            Frm_Principal frmPrincipal = new Frm_Principal();
+
             try
             {
-                Contexto = new BibliotecaEntities(Configuracion.ConnectionString);
-                Contexto.Connection.Open();
-                Contexto.Connection.Close();
-            }
-                
-            catch (EntityException enex)
-            {
-                pbCargando.Visible = true;
-                Application.DoEvents();
+                string username = txbUsername.Text.ToUpper();
+                string password = Configuracion.ObtenerMd5Hash(txbPassword.Text.ToUpper()).ToUpper();
 
-                DialogResult dr =
-                MessageBox.Show("No fue posible conectar con el servidor de base de datos... por favor configure la aplicación para lograr el acceso.", 
-                                "Configurar", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
-
-                if (dr == DialogResult.Yes)
-                    new Frm_Config_App().ShowDialog();
-
-                pbCargando.Visible = false;
+                using (var Contexto = new BibliotecaEntities(Configuracion.ConnectionString))
+                {
+                    usuarios_app usuarioApp =
+                        Contexto.usuarios_app.FirstOrDefault(o => o.nombre_usuario == username
+                                                               && o.contrasenia == password
+                                                               && o.estado == true);
+                    if (usuarioApp != null)
+                    {
+                        Configuracion.usuarioApp = usuarioApp;
+                        this.Hide();
+                        frmPrincipal.ShowDialog();
+                        this.Close();
+                    }
+                    else
+                    {
+                        XtraMessageBox.Show("Error en nombre de usuario o contraseña...", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                XtraMessageBox.Show(Configuracion.MostrarExcepcion(ex), ex.GetType().ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                frmPrincipal.ShowDialog();
             }
+        }
+        private void btnConfigurar_Click(object sender, EventArgs e)
+        {
+            new Frm_Config_App().ShowDialog();
         }
     }
 }

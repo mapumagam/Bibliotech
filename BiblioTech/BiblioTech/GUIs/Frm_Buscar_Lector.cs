@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Linq;
 using System.Windows.Forms;
-using DevExpress.XtraEditors;
 using BiblioTech.Entity;
 using BiblioTech.Modelos;
 
@@ -14,6 +9,7 @@ namespace BiblioTech.GUIs
 {
     public partial class Frm_Buscar_Lector : DevExpress.XtraEditors.XtraForm
     {
+        int iPaginaActual = 0, iPaginasTotales = 0;
         private BibliotecaEntities Contexto;
         private List<UsuarioBusqueda> lstUsuariosBusqueda = new List<UsuarioBusqueda>();
         public usuarios usuario;
@@ -32,8 +28,12 @@ namespace BiblioTech.GUIs
 
         private void InicializarGrid()
         {
-            UsuarioBusqueda usuariobusqueda;            
-            List<usuarios> lstUsuarios = Contexto.usuarios.OrderBy(o=>o.primer_nombre).ToList();
+            UsuarioBusqueda usuariobusqueda;
+            List<usuarios> lstUsuarios = 
+                Contexto.usuarios.ToList()
+                    .FindAll(o => o.tipo_usuario != "SU")
+                    .OrderBy(o => o.primer_nombre)
+                    .ToList();
 
             foreach (usuarios lector in lstUsuarios)
             {
@@ -42,9 +42,66 @@ namespace BiblioTech.GUIs
                 this.lstUsuariosBusqueda.Add(usuariobusqueda);
             }
 
-            gridLectores.DataSource = lstUsuariosBusqueda;
-            gvLectores.BestFitColumns();
+            iPaginaActual = 0;
+            if ((lstUsuariosBusqueda.Count % 100) != 0)
+            {
+                iPaginasTotales = (int)(lstUsuariosBusqueda.Count / 100);
+                iPaginasTotales++;
+            }
+            else
+            {
+                iPaginasTotales = (int)(lstUsuariosBusqueda.Count / 100);
+            }
+
+            Paginar(iPaginaActual);
         }
+
+        #region Paginación
+            private void Paginar(int index)
+            {
+                int iSalto = index * 100;
+
+                RevisarBotones();
+
+                lblPaginacion.Text = string.Format("Página {0} de {1}", (index + 1), iPaginasTotales);
+
+                gridLectores.DataSource = null;
+                gridLectores.DataSource = lstUsuariosBusqueda.Skip(iSalto).Take(100);
+                gvLectores.BestFitColumns();
+            }
+
+            private void RevisarBotones()
+            {
+                if (iPaginaActual == 0)
+                    btnAnterior.Enabled = false;
+                else
+                    btnAnterior.Enabled = true;
+                if ((iPaginaActual + 1) == iPaginasTotales)
+                    btnSiguiente.Enabled = false;
+                else
+                    btnSiguiente.Enabled = true;
+            }
+
+            private void btnAnterior_Click(object sender, EventArgs e)
+            {
+                PaginaAtras();
+            }
+            private void btnSiguiente_Click(object sender, EventArgs e)
+            {
+                PaginaSiguiente();
+            }
+
+            private void PaginaAtras()
+            {
+                iPaginaActual--;
+                Paginar(iPaginaActual);
+            }
+            private void PaginaSiguiente()
+            {
+                iPaginaActual++;
+                Paginar(iPaginaActual);
+            }
+        #endregion
 
         private void txbMatricula_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -88,6 +145,27 @@ namespace BiblioTech.GUIs
             var usuarioEncontrado = (UsuarioBusqueda)RenglonGrid;
             usuario = usuarioEncontrado.Lector;
             this.Close();
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Left)
+            {
+                if (btnAnterior.Enabled == true)
+                {
+                    PaginaAtras();
+                }
+                return true;
+            }
+            if (keyData == Keys.Right)
+            {
+                if (btnSiguiente.Enabled == true)
+                {
+                    PaginaSiguiente();
+                }
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

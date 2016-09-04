@@ -19,4 +19,10 @@
         Profesor = 2,
         Otro = 3
     }
+
+    public enum TipoAccion
+    {
+        Nuevo = 1,
+        Modificar = 2
+    }
 }

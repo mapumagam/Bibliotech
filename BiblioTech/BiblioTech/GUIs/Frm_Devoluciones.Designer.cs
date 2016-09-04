@@ -40,7 +40,7 @@
             this.gvConsulta = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colSeleccionado = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colLibro = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colLibro1 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridConsulta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.libroDevolucionBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvConsulta)).BeginInit();
@@ -61,9 +61,9 @@
             // 
             this.btnBuscarLector.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnBuscarLector.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscarLector.Location = new System.Drawing.Point(602, 43);
+            this.btnBuscarLector.Location = new System.Drawing.Point(602, 40);
             this.btnBuscarLector.Name = "btnBuscarLector";
-            this.btnBuscarLector.Size = new System.Drawing.Size(150, 27);
+            this.btnBuscarLector.Size = new System.Drawing.Size(150, 30);
             this.btnBuscarLector.TabIndex = 30;
             this.btnBuscarLector.Text = "Buscar Lector";
             this.btnBuscarLector.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -150,7 +150,7 @@
             this.gvConsulta.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colSeleccionado,
             this.colLibro,
-            this.gridColumn1});
+            this.colLibro1});
             this.gvConsulta.GridControl = this.gridConsulta;
             this.gvConsulta.Name = "gvConsulta";
             this.gvConsulta.OptionsView.EnableAppearanceEvenRow = true;
@@ -173,15 +173,13 @@
             this.colLibro.Visible = true;
             this.colLibro.VisibleIndex = 1;
             // 
-            // gridColumn1
+            // colLibro1
             // 
-            this.gridColumn1.Caption = "Autor";
-            this.gridColumn1.FieldName = "Libro.f_autor.descripcion";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.OptionsColumn.AllowEdit = false;
-            this.gridColumn1.OptionsColumn.ReadOnly = true;
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 2;
+            this.colLibro1.Caption = "Autor";
+            this.colLibro1.FieldName = "Libro.autor.descripcion";
+            this.colLibro1.Name = "colLibro1";
+            this.colLibro1.Visible = true;
+            this.colLibro1.VisibleIndex = 2;
             // 
             // Frm_Devoluciones
             // 
@@ -221,6 +219,6 @@
         private System.Windows.Forms.BindingSource libroDevolucionBindingSource;
         private DevExpress.XtraGrid.Columns.GridColumn colSeleccionado;
         private DevExpress.XtraGrid.Columns.GridColumn colLibro;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn colLibro1;
     }
 }

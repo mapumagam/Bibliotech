@@ -120,6 +120,7 @@
     <Property Name="estado" Type="Boolean" Nullable="false" />
     <Property Name="nombre_completo" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
     <NavigationProperty Name="prestamos" Relationship="BibliotecaModel.fk_usuario_app_prestamo" FromRole="usuarios_app" ToRole="prestamos" />
+    <Property Type="String" Name="permisos" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="fk_area">
     <End Role="catalogos" Type="BibliotecaModel.catalogos" Multiplicity="1" />

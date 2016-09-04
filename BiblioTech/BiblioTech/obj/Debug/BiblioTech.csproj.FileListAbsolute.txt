@@ -31,12 +31,11 @@ G:\Mis Documentos\Visual Studio 2010\Projects\BiblioTech\BiblioTech\obj\Debug\Bi
 G:\Mis Documentos\Visual Studio 2010\Projects\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Catalogo.resources
 G:\Mis Documentos\Visual Studio 2010\Projects\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Devoluciones.resources
 G:\Mis Documentos\Visual Studio 2010\Projects\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Buscar_Lector.resources
+G:\Mis Documentos\Visual Studio 2010\Projects\BiblioTech\BiblioTech\bin\Debug\MySql.Data.dll
+G:\Mis Documentos\Visual Studio 2010\Projects\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_UsuariosApp.resources
 D:\GitHub\Bibliotech\BiblioTech\BiblioTech\bin\Debug\BiblioTech.exe.config
 D:\GitHub\Bibliotech\BiblioTech\BiblioTech\obj\Debug\BiblioTech.exe
 D:\GitHub\Bibliotech\BiblioTech\BiblioTech\obj\Debug\BiblioTech.pdb
-D:\GitHub\Bibliotech\BiblioTech\BiblioTech\bin\Debug\Resources\Library mini.jpg
-D:\GitHub\Bibliotech\BiblioTech\BiblioTech\bin\Debug\BiblioTech.exe
-D:\GitHub\Bibliotech\BiblioTech\BiblioTech\bin\Debug\BiblioTech.pdb
 D:\GitHub\Bibliotech\BiblioTech\BiblioTech\obj\Debug\BiblioTech.csprojResolveAssemblyReference.cache
 D:\GitHub\Bibliotech\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Buscar_Lector.resources
 D:\GitHub\Bibliotech\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Catalogo.resources
@@ -49,7 +48,12 @@ D:\GitHub\Bibliotech\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Perdido
 D:\GitHub\Bibliotech\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Prestamos.resources
 D:\GitHub\Bibliotech\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Principal.resources
 D:\GitHub\Bibliotech\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_Usuarios.resources
+D:\GitHub\Bibliotech\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.Frm_UsuariosApp.resources
 D:\GitHub\Bibliotech\BiblioTech\BiblioTech\obj\Debug\BiblioTech.Properties.Resources.resources
 D:\GitHub\Bibliotech\BiblioTech\BiblioTech\obj\Debug\BiblioTech.csproj.GenerateResource.Cache
 D:\GitHub\Bibliotech\BiblioTech\BiblioTech\obj\Debug\BiblioTech.exe.licenses
+D:\GitHub\Bibliotech\BiblioTech\BiblioTech\bin\Debug\Resources\Library mini.jpg
+D:\GitHub\Bibliotech\BiblioTech\BiblioTech\bin\Debug\BiblioTech.exe
+D:\GitHub\Bibliotech\BiblioTech\BiblioTech\bin\Debug\BiblioTech.pdb
 D:\GitHub\Bibliotech\BiblioTech\BiblioTech\bin\Debug\MySql.Data.dll
+D:\GitHub\Bibliotech\BiblioTech\BiblioTech\obj\Debug\BiblioTech.GUIs.XtraReport1.resources

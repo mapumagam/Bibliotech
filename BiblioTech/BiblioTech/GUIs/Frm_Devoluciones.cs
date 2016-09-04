@@ -1,21 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Linq;
 using System.Windows.Forms;
-using DevExpress.XtraEditors;
 using BiblioTech.Entity;
 using BiblioTech.Modelos;
+using DevExpress.XtraEditors;
 
 namespace BiblioTech.GUIs
 {
     public partial class Frm_Devoluciones : XtraForm
     {
         usuarios Lector;
-        BibliotecaEntities Contexto = new BibliotecaEntities();
+        BibliotecaEntities Contexto = new BibliotecaEntities(Configuracion.ConnectionString);
 
         public Frm_Devoluciones()
         {
@@ -56,24 +52,37 @@ namespace BiblioTech.GUIs
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                XtraMessageBox.Show(ex.ToString());
             }
         }
-
         private void Devolver()
         {
-            DialogResult dr = MessageBox.Show("¿Los datos son correctos?", "Devolver", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dr = XtraMessageBox.Show("¿Los datos son correctos?", "Devolver", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dr == DialogResult.Yes)
             {
                 List<LibroDevolucion> lstLibrosSeleccionados = ObtenerLibrosSeleccionados();
+
                 foreach(LibroDevolucion Devolucion in lstLibrosSeleccionados)
                 {
-                    prestamos libro = Contexto.prestamos.FirstOrDefault(o => o.id_libro == Devolucion.Libro.id_libro);
-                    libro.fecha_entrega_real = DateTime.Today;
-                }
-                Contexto.SaveChanges();
+                    using (BibliotecaEntities ContextoParaGuardar = new BibliotecaEntities(Configuracion.ConnectionString))
+                    {
+                        prestamos prestamo = 
+                            ContextoParaGuardar.prestamos.FirstOrDefault(o => o.id_prestamo==Devolucion.id_prestamo);
 
-                MessageBox.Show("¡La devolucion se ha efectuado con exito!");
+                        prestamo.fecha_entrega_real = DateTime.Today;
+
+                        ContextoParaGuardar.ApplyCurrentValues("prestamos", prestamo);
+                        ContextoParaGuardar.SaveChanges();                        
+                    }
+                }
+
+                XtraMessageBox.Show("¡La devolucion se ha efectuado con exito!");
+
+                //Eliminamos contexto desactualizado
+                Contexto.Dispose();
+
+                //Creamos un nuevo contexto Actualizado
+                Contexto = new BibliotecaEntities(Configuracion.ConnectionString);
 
                 Lector = Contexto.usuarios.FirstOrDefault(o => o.matricula == Lector.matricula);
                 ActualizarGrid(Lector);
@@ -98,6 +107,7 @@ namespace BiblioTech.GUIs
             {
                 PrestamosGrid = new LibroDevolucion();
                 PrestamosGrid.Libro = prestamo.libros;
+                PrestamosGrid.id_prestamo = prestamo.id_prestamo;
                 LstPrestamosGrid.Add(PrestamosGrid);
             }
 

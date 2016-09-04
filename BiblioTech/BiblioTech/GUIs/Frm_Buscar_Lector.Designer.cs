@@ -39,6 +39,10 @@
             this.colNombreLector = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnAnterior = new System.Windows.Forms.Button();
+            this.btnSiguiente = new System.Windows.Forms.Button();
+            this.lblPaginacion = new System.Windows.Forms.Label();
+            this.lblCount = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridLectores)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.usuarioBusquedaBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvLectores)).BeginInit();
@@ -83,12 +87,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridLectores.Cursor = System.Windows.Forms.Cursors.Default;
             this.gridLectores.DataSource = this.usuarioBusquedaBindingSource;
-            this.gridLectores.Location = new System.Drawing.Point(12, 66);
+            this.gridLectores.Location = new System.Drawing.Point(12, 95);
             this.gridLectores.LookAndFeel.SkinName = "Metropolis";
             this.gridLectores.LookAndFeel.UseDefaultLookAndFeel = false;
             this.gridLectores.MainView = this.gvLectores;
             this.gridLectores.Name = "gridLectores";
-            this.gridLectores.Size = new System.Drawing.Size(810, 348);
+            this.gridLectores.Size = new System.Drawing.Size(810, 319);
             this.gridLectores.TabIndex = 35;
             this.gridLectores.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvLectores});
@@ -157,17 +161,69 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // btnAnterior
+            // 
+            this.btnAnterior.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAnterior.Enabled = false;
+            this.btnAnterior.Font = new System.Drawing.Font("Wingdings 3", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.btnAnterior.Location = new System.Drawing.Point(773, 66);
+            this.btnAnterior.Name = "btnAnterior";
+            this.btnAnterior.Size = new System.Drawing.Size(25, 23);
+            this.btnAnterior.TabIndex = 41;
+            this.btnAnterior.Text = "t";
+            this.btnAnterior.UseVisualStyleBackColor = true;
+            this.btnAnterior.Click += new System.EventHandler(this.btnAnterior_Click);
+            // 
+            // btnSiguiente
+            // 
+            this.btnSiguiente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSiguiente.Enabled = false;
+            this.btnSiguiente.Font = new System.Drawing.Font("Wingdings 3", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.btnSiguiente.Location = new System.Drawing.Point(797, 66);
+            this.btnSiguiente.Name = "btnSiguiente";
+            this.btnSiguiente.Size = new System.Drawing.Size(25, 23);
+            this.btnSiguiente.TabIndex = 40;
+            this.btnSiguiente.Text = "u";
+            this.btnSiguiente.UseVisualStyleBackColor = true;
+            this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
+            // 
+            // lblPaginacion
+            // 
+            this.lblPaginacion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPaginacion.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPaginacion.Location = new System.Drawing.Point(605, 66);
+            this.lblPaginacion.Name = "lblPaginacion";
+            this.lblPaginacion.Size = new System.Drawing.Size(166, 23);
+            this.lblPaginacion.TabIndex = 39;
+            this.lblPaginacion.Text = "Página 0 de 0";
+            this.lblPaginacion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblCount
+            // 
+            this.lblCount.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCount.Location = new System.Drawing.Point(12, 66);
+            this.lblCount.Name = "lblCount";
+            this.lblCount.Size = new System.Drawing.Size(257, 23);
+            this.lblCount.TabIndex = 38;
+            this.lblCount.Text = "Libros encontrados : 0";
+            this.lblCount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // Frm_Buscar_Lector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(834, 462);
+            this.Controls.Add(this.btnAnterior);
+            this.Controls.Add(this.btnSiguiente);
+            this.Controls.Add(this.lblPaginacion);
+            this.Controls.Add(this.lblCount);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.gridLectores);
             this.Controls.Add(this.txbNombre);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblTitulo);
+            this.KeyPreview = true;
             this.Name = "Frm_Buscar_Lector";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Administración - Buscar_Lector";
@@ -192,5 +248,9 @@
         private System.Windows.Forms.BindingSource usuarioBusquedaBindingSource;
         private DevExpress.XtraGrid.Columns.GridColumn colNombreLector;
         private DevExpress.XtraGrid.Columns.GridColumn colMatricula;
+        private System.Windows.Forms.Button btnAnterior;
+        private System.Windows.Forms.Button btnSiguiente;
+        private System.Windows.Forms.Label lblPaginacion;
+        private System.Windows.Forms.Label lblCount;
     }
 }
